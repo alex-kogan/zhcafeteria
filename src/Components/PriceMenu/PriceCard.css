@@ -1,0 +1,54 @@
+.vertical-align {
+  display: flex;
+  /* place items in column */
+  flex-direction: column;
+  /* center flex items horizontally */
+  align-items: center;
+  /* center all content vertically */
+  justify-content: center;
+}
+
+
+.priceCard{
+	width: 30vw;
+}
+
+.circle {
+  /* circle styles */
+	  width: 3vw;
+	  height: 3vw;
+	  cursor: pointer;
+	}
+
+@media only screen and (max-width: 600px) {
+	.priceCard {
+		width: 70vw;
+	}
+  .circle {
+  /* circle styles */
+	  width: 10vw;
+	  height: 10vw;
+	  cursor: pointer;
+	}
+}
+
+.circle.dark-blue:hover {
+	color: #CDECFF;
+	border-color: #00449E;
+	background-color: #00449E;
+}
+.circle.blue:hover {
+	color: #96CCFF;
+	border-color: #357EDD;
+	background-color: #357EDD;
+}
+.circle.light-blue:hover {
+	color: #357EDD;
+	border-color: #96CCFF;
+	background-color: #96CCFF;
+}
+.circle.lightest-blue:hover {
+	color: #00449E;
+	border-color: #CDECFF;
+	background-color: #CDECFF;
+}
