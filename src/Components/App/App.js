@@ -8,9 +8,10 @@ import RegisterPage from '../../Containers/RegisterPage';
 
 import './App.css';
 
-const App = ({appRoute}) => {
+const App = ({appRoute, onLoad}) => {
   
   const appBody = (appRoute) => {
+	  onLoad()
 	  switch (appRoute) {
 	    case 'Sign In':
 	      return <SignInPage/>;

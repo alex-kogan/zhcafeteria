@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 
 import App from '../Components/App/App';
 
-import {routeChange} from '../Actions'
+import {routeChange, checkRemeberMe} from '../Actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLinkClick: (destination) => dispatch(routeChange(destination))
+    onLinkClick: (destination) => dispatch(routeChange(destination)),
+    onLoad: () => dispatch(checkRemeberMe())
   }
 }
 

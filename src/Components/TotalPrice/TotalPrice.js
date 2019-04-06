@@ -1,18 +1,19 @@
 import React from 'react';
+import './TotalPrice.css'
 
 const TotalPrice = ({totalPrice, submitPrice, resetPrice}) => {
   return (
     <div>
       <h1> {totalPrice} CHF </h1>
       <div>
-        <a className="f4 link dim br-pill ph3 pv2 mb2 white bg-green" href="#0"
+        <p className="priceButton f4 dim br-pill ph3 pv2 mb2 white bg-green"
            onClick={submitPrice}
-        >Submit</a>
+        >Submit</p>
       </div>
       <div className="pt4">
-        <a className="f4 link dim br-pill ph3 pv2 mb2 white bg-dark-red" href="#0"
+        <p className="priceButton f4 dim br-pill ph3 pv2 mb2 white bg-dark-red"
           onClick={resetPrice}
-        >Clear</a>
+        >Clear</p>
       </div>
     </div>
   )

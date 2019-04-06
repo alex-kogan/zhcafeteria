@@ -13,8 +13,8 @@ const verifyPassword = (password) => {
 	const passLength = (password.length<=16 && password.length>=8)
 	// check capital letters
 	const capitalLetters = password.match(/[A-Z]/gi) !== null
-	// check capital letters
-	const regularLetters = password.match(/[a-z]/gi) !== null
+	// check regular letters
+	const regularLetters = password.match(/[a-z]/g) !== null
 	// check numbers
 	const numbers = password.match(/[0-9]/gi) !== null
 	return (passLength&capitalLetters&regularLetters&numbers)
