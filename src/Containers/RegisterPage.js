@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import RegisterPage from '../Components/RegisterPage/RegisterPage';
-import {register} from '../Actions'
+import {register} from '../Actions/signInActions.js'
 
 const mapStateToProps = (state) => {
   return {

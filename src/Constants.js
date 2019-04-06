@@ -1,4 +1,6 @@
 export const appConstants = {
+SERVER_ADDRESS: 'http://localhost:3000/',
+
 ROUTE_CHANGE: 'ROUTE_CHANGE',
 
 PRICE_INCREASE: 'PRICE_INCREASE',

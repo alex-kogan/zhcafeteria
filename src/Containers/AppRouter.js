@@ -2,7 +2,8 @@ import {connect} from 'react-redux';
 
 import App from '../Components/App/App';
 
-import {routeChange, checkRemeberMe} from '../Actions'
+import {routeChange} from '../Actions'
+import {checkRemeberMe} from '../Actions/signInActions.js'
 
 const mapStateToProps = (state) => {
   return {

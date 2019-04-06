@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import Navigation from '../Components/Navigation/Navigation';
-import {signOut} from '../Actions'
+import {signOut} from '../Actions/signInActions.js'
 
 const mapStateToProps = (state) => {
   return {

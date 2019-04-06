@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
-import SignInPage from '../Components/SignInPage/SignInPage';
-import {signIn, rememberMe} from '../Actions'
+import SignInPage from '../Components/SignInPage/SignInPage'
+import {signIn, rememberMe} from '../Actions/signInActions.js'
 
 const mapStateToProps = (state) => {
   return {
