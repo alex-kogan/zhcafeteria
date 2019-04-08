@@ -2,10 +2,11 @@ import {appConstants} from '../Constants.js'
 
 const initialStateUserData = {
 	id: '',
+	type: 'user',
 	name: '',
 	email: '',
 	currentValue: 0,
-	joined: ''
+	valueResetDate: ''
 }
 
 export const userData = (state=initialStateUserData, action={}) => {
@@ -13,10 +14,11 @@ export const userData = (state=initialStateUserData, action={}) => {
 		case appConstants.USER_DATA_UPDATE:
 			return Object.assign({}, state, {
 				id: action.payload.id,
+				type: action.payload.type,
 				name: action.payload.name,
 				email: action.payload.email,
 				currentValue: action.payload.currentValue,
-				joined: action.payload.joined
+				valueResetDate: action.payload.valueResetDate
 			});
 		default:
 			return state;

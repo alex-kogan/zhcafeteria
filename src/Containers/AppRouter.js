@@ -2,8 +2,8 @@ import {connect} from 'react-redux';
 
 import App from '../Components/App/App';
 
-import {routeChange} from '../Actions'
 import {checkRemeberMe} from '../Actions/signInActions.js'
+import {getUserSummary} from '../Actions/adminActions.js'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,8 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLinkClick: (destination) => dispatch(routeChange(destination)),
-    onLoad: () => dispatch(checkRemeberMe())
+    onLoad: () => dispatch(checkRemeberMe()),
+    onAdminLoad: () => dispatch(getUserSummary())
   }
 }
 

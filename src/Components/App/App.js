@@ -5,18 +5,22 @@ import PriceMenu from '../PriceMenu/PriceMenu';
 import TotalPrice from '../../Containers/TotalPrice';
 import SignInPage from '../../Containers/SignInPage';
 import RegisterPage from '../../Containers/RegisterPage';
+import AdminPage from '../../Containers/AdminPage';
 
 import './App.css';
 
-const App = ({appRoute, onLoad}) => {
+const App = ({appRoute, onLoad, onAdminLoad}) => {
   
   const appBody = (appRoute) => {
-	  onLoad()
 	  switch (appRoute) {
 	    case 'Sign In':
+	    	onLoad()
 	      return <SignInPage/>;
 	    case 'Register':
 	  	  return <RegisterPage/>;
+	    case 'Admin':
+	    	onAdminLoad()
+	  	  return <AdminPage/>;  
 	    case 'Home':
 	      return <div>
 		      <PriceMenu/>

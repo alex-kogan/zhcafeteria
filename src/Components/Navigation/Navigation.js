@@ -3,12 +3,19 @@ import NavigationLink from '../../Containers/NavigationLink.js';
 
 const Navigation = ({appRoute, userData, onSignOutClick}) => {
   
+  const adminSection = (userType) => {
+    if (userType==='admin') {
+      return <NavigationLink address='Admin'/> 
+    }
+    return
+  }
+
   const navBody = (appRoute) => {
     switch (appRoute){
       case 'Sign In':
-        return <NavigationLink address={'Register'} />
+        return <NavigationLink address='Register' />
       case 'Register':
-        return <NavigationLink address={'Sign In'} />
+        return <NavigationLink address='Sign In' />
       default:
         return <div className="dt-l w-100">
                   <h3 className="db dtc-l v-mid near-white w-100 w-25-l tc tl-l mb2 mb0-l">
@@ -18,6 +25,7 @@ const Navigation = ({appRoute, userData, onSignOutClick}) => {
                     <NavigationLink address='Home'/>
                     <NavigationLink address='My Stats'/>
                     <NavigationLink address='About'/>
+                    {adminSection(userData.type)}
                     <p className='link dim light-gray f6 f5-l dib'
                       title='Sing out'
                       onClick={() => onSignOutClick()}
