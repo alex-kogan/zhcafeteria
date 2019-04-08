@@ -9,7 +9,22 @@ import AdminPage from '../../Containers/AdminPage';
 
 import './App.css';
 
-const App = ({appRoute, onLoad, onAdminLoad}) => {
+const submitOverlay = (overlayStatus) => {
+	if (overlayStatus) {
+		return (
+			<div id="submitOverlay">
+				<div className="f4">
+					<img src='./check mark.png' alt='check mark'/>
+					Submmitted Succesfuly!
+				</div>
+			</div>
+			)
+	}
+	else
+		return
+}
+
+const App = ({appRoute, overlayStatus,onLoad, onAdminLoad}) => {
   
   const appBody = (appRoute) => {
 	  switch (appRoute) {
@@ -23,6 +38,7 @@ const App = ({appRoute, onLoad, onAdminLoad}) => {
 	  	  return <AdminPage/>;  
 	    case 'Home':
 	      return <div>
+	      	{submitOverlay(overlayStatus)}
 		      <PriceMenu/>
 		      <TotalPrice/>
 	      </div>;

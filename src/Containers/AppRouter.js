@@ -7,7 +7,8 @@ import {getUserSummary} from '../Actions/adminActions.js'
 
 const mapStateToProps = (state) => {
   return {
-    appRoute: state.appRoute.appRoute
+    appRoute: state.appRoute.appRoute,
+    overlayStatus: state.priceMenu.message
   }
 }
 

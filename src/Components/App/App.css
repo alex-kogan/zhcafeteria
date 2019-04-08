@@ -32,3 +32,36 @@
     transform: rotate(360deg);
   }
 }
+
+#submitOverlay {
+  position: absolute; /* Sit on top of the page content */
+  display: table; /* Hidden by default */
+  width: 30%;
+  height: 10%; /* Full height (cover the whole page) */
+  bottom: 0%;
+  left: 35%;
+  align-self: center;
+  background-color: rgba(122,192,67,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  border-radius: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  #submitOverlay {
+    width: 70vw;
+    left: 15vw;
+  }
+}
+
+#submitOverlay > div {
+  display: table-cell;
+  color: rgba(122,192,67);
+  vertical-align: middle;
+}
+
+#submitOverlay  img {
+  display: table-cell;
+  vertical-align: middle;
+  margin: auto;
+  width: 20%;
+}
