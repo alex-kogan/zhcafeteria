@@ -1,17 +1,11 @@
 import React from 'react';
 
 import AdminTable from './AdminTable'
-import AdminControls from './AdminControls'
+import AdminControls from '../../Containers/AdminControls'
 
 const adminBody = (userDataList) => {
   if (userDataList.length!==0)
   {
-  	userDataList.sort((a, b) => {
-	    if(a.name < b.name) { return -1; }
-	    if(a.name > b.name) { return 1; }
-	    return 0;
-  	});
-  	console.log(userDataList)
   	return <AdminTable TableData={userDataList}/>
   }
   else {

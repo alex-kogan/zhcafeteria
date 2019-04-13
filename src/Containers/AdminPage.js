@@ -6,13 +6,13 @@ import {getUserSummary} from '../Actions/adminActions.js'
 
 const mapStateToProps = (state) => {
   return {
-  	userDataList: state.adminData.userDataList
+  	userDataList: state.adminData.displayDataList
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	loadUserList: (searchString) => dispatch(getUserSummary(searchString))
+  	loadUserList: () => dispatch(getUserSummary())
   }
 }
 
