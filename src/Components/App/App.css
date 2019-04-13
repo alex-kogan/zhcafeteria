@@ -37,8 +37,8 @@
   position: absolute; /* Sit on top of the page content */
   display: table; /* Hidden by default */
   width: 30%;
-  height: 10%; /* Full height (cover the whole page) */
-  bottom: 0%;
+  height: 10%;
+  bottom: 2%;
   left: 35%;
   align-self: center;
   background-color: rgba(122,192,67,0.5); /* Black background with opacity */

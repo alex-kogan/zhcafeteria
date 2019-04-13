@@ -22,12 +22,16 @@ export const priceDecrease = (value) => (dispatch, getState) => {
 };
 
 export const priceSubmit = (value) => (dispatch, getState) => {
-	dispatch ({type: appConstants.PRICE_SUBMIT, payload: getState().priceMenu.value});
-	setTimeout(() => {
-		dispatch ({type: appConstants.PRICE_SUBMIT_DONE})
-	},500)
+	if (getState().priceMenu.value!==0){
+		dispatch ({type: appConstants.PRICE_SUBMIT, payload: getState().priceMenu.value});
+		setTimeout(() => {
+			dispatch ({type: appConstants.PRICE_SUBMIT_DONE})
+		},500)
+	}
 };
 
 export const priceReset = (value) => (dispatch, getState) => {
-	dispatch ({type: appConstants.PRICE_RESET, payload: 0});
+	if (getState().priceMenu.value!==0){
+		dispatch ({type: appConstants.PRICE_RESET, payload: 0});
+	}
 };

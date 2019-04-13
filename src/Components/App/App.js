@@ -7,22 +7,9 @@ import SignInPage from '../../Containers/SignInPage';
 import RegisterPage from '../../Containers/RegisterPage';
 import AdminPage from '../../Containers/AdminPage';
 
-import './App.css';
+import SubmitOverlay from './SubmitOverlay'
 
-const submitOverlay = (overlayStatus) => {
-	if (overlayStatus) {
-		return (
-			<div id="submitOverlay">
-				<div className="f4">
-					<img src='./check mark.png' alt='check mark'/>
-					Submmitted Succesfuly!
-				</div>
-			</div>
-			)
-	}
-	else
-		return
-}
+import './App.css';
 
 const App = ({appRoute, overlayStatus,onLoad, onAdminLoad}) => {
   
@@ -38,7 +25,7 @@ const App = ({appRoute, overlayStatus,onLoad, onAdminLoad}) => {
 	  	  return <AdminPage/>;  
 	    case 'Home':
 	      return <div>
-	      	{submitOverlay(overlayStatus)}
+	      	<SubmitOverlay overlayStatus={overlayStatus}/>
 		      <PriceMenu/>
 		      <TotalPrice/>
 	      </div>;
