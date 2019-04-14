@@ -2,6 +2,9 @@ import {appConstants} from '../Constants.js';
 
 import {routeChange} from './index.js'
 
+const maxPassLength = 10
+const minPassLength = 6
+
 const verifyEmail = (email) => {
 	const numberAts = email.replace(/[^@]/g, "").length===1
 			// chck for no more than one @
@@ -14,7 +17,7 @@ const verifyEmail = (email) => {
 
 const verifyPassword = (password) => {
 	// check password length
-	const passLength = (password.length<=16 && password.length>=8)
+	const passLength = (password.length<=maxPassLength && password.length>=minPassLength)
 	// check capital letters
 	const capitalLetters = password.match(/[A-Z]/gi) !== null
 	// check regular letters
@@ -25,20 +28,25 @@ const verifyPassword = (password) => {
 }
 
 const verifyRegisterData = (registerData) => {
-	const {name ,password, email} = registerData
+	const {password, passwordSecond, email} = registerData
 	let errorArray = []
-	// Name verify
-	if (name.trim().length === 0) {
-		errorArray.push('User name must contain at least one non white space char')
-	}
+	// Name verify currently 
+	// if (name.trim().length === 0) {
+	// 	errorArray.push('User name must contain at least one non white space char')
+	// }
 	// Bain email verify
 	if (!verifyEmail(email)) {
 		errorArray.push('You must enter a valid Bain email')
 	}
 	// password verify
 	if (!verifyPassword(password)) {
-		errorArray.push('Password must contain between 8 and 16 charcters, at least on capital letter, at least on regular letter and at least one number')
+		errorArray.push(`Password must contain between ${minPassLength} and ${maxPassLength} charcters, at least on capital letter, at least on regular letter and at least one number`)
 	}
+	// verify seocnd password entry
+	if (password!==passwordSecond) {
+		errorArray.push(`Second password entry doesn't match first one`)
+	}
+
 	return errorArray
 }
 
@@ -51,7 +59,7 @@ const verifySignInData = (signIn) => {
 	}
 	// password verify
 	if (!verifyPassword(password)) {
-		errorArray.push('Password must contain between 8 and 16 charcters, at least on capital letter, at least on regular letter and at least one number')
+		errorArray.push(`Password must contain between ${minPassLength} and ${maxPassLength} charcters, at least on capital letter, at least on regular letter and at least one number`)
 	}
 	return errorArray
 }

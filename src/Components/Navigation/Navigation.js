@@ -3,8 +3,8 @@ import NavigationLink from '../../Containers/NavigationLink.js';
 
 const Navigation = ({appRoute, userData, onSignOutClick}) => {
   
-  const adminSection = (userType) => {
-    if (userType==='admin') {
+  const adminSection = (isAdmin) => {
+    if (isAdmin) {
       return <NavigationLink address='Admin'/> 
     }
     return
@@ -19,13 +19,13 @@ const Navigation = ({appRoute, userData, onSignOutClick}) => {
       default:
         return <div className="dt-l w-100">
                   <h3 className="db dtc-l v-mid near-white w-100 w-25-l tc tl-l mb2 mb0-l">
-                    Hello {userData.name}
+                    Hello {userData.firstName}
                   </h3>
                   <div className="db dtc-l v-mid w-100 w-75-l tc tr-l">
                     <NavigationLink address='Home'/>
                     <NavigationLink address='My Stats'/>
                     <NavigationLink address='About'/>
-                    {adminSection(userData.type)}
+                    {adminSection(userData.admin)}
                     <p className='link dim light-gray f6 f5-l dib'
                       title='Sing out'
                       onClick={() => onSignOutClick()}

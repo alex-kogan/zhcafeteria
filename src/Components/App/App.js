@@ -30,7 +30,9 @@ const App = ({appRoute, overlayStatus,onLoad, onAdminLoad}) => {
 		      <TotalPrice/>
 	      </div>;
 	    default:
-	      return <div></div>;
+	      return <div>
+	      	<img className='w-25' src='./const.jpg' alt='under construction'/>
+	      </div>;
 	  }
 	}
 
