@@ -22,11 +22,22 @@ export const priceDecrease = (value) => (dispatch, getState) => {
 };
 
 export const priceSubmit = (value) => (dispatch, getState) => {
-	if (getState().priceMenu.value!==0){
-		dispatch ({type: appConstants.PRICE_SUBMIT, payload: getState().priceMenu.value});
-		setTimeout(() => {
-			dispatch ({type: appConstants.PRICE_SUBMIT_DONE})
-		},500)
+	const {value} = getState().priceMenu
+	const userId = getState().userData._id
+	if (value!==0) {
+		dispatch ({type: appConstants.PRICE_SUBMIT, payload: value});
+		fetch(appConstants.SERVER_ADDRESS+'transaction/'+userId, {
+			method: 'put',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				amount: value
+			})
+		})
+		.then(response => response.json())
+		.then(userData => {
+			dispatch ({type: appConstants.USER_DATA_UPDATE, payload: userData});
+			setTimeout(()=>dispatch ({type: appConstants.PRICE_SUBMIT_DONE}), 500);
+		})
 	}
 };
 

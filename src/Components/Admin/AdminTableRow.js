@@ -14,7 +14,7 @@ const niceDate = (dateValue) => {
 
 const AdminTableRow = ({DataRow}) => {
 	return <tr className="pa3 bb tl b--black-20">
-		<td>{DataRow.name}</td>
+		<td>{DataRow.fullName}</td>
 		<td>{DataRow.currentValue} CHF</td>
 		<td>{niceDate(DataRow.valueResetDate)}</td>
   </tr>

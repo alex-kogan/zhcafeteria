@@ -78,9 +78,9 @@ export const signIn = (signInData) => (dispatch, getState) => {
 		})
 		.then(response => response.json())
 		.then(userData => {
-			if (userData.id) {
+			if (userData._id) {
 				if (getState().rememberMeStatus.status) {
-					sessionStorage.setItem('userId',userData.id)
+					sessionStorage.setItem('userId',userData._id)
 				}
 				dispatch ({type: appConstants.SIGN_IN, payload: 'signed_in'});
 				dispatch ({type: appConstants.USER_DATA_UPDATE, payload: userData});

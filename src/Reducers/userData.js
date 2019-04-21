@@ -1,7 +1,7 @@
 import {appConstants} from '../Constants.js'
 
 const initialStateUserData = {
-	id: '',
+	_id: '',
 	admin: false,
 	firstName: '',
 	email: '',
@@ -13,7 +13,7 @@ export const userData = (state=initialStateUserData, action={}) => {
 	switch(action.type) {
 		case appConstants.USER_DATA_UPDATE:
 			return Object.assign({}, state, {
-				id: action.payload.id,
+				_id: action.payload._id,
 				admin: action.payload.admin,
 				firstName: action.payload.firstName,
 				email: action.payload.email,

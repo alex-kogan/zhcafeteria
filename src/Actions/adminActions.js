@@ -16,7 +16,7 @@ export const getUserSummary = () => (dispatch, getState) => {
 
 const filerUserList = (userDataList,searchString) => {
 	let displayList = userDataList.filter ((userData) => {
-		return userData.name.toLowerCase().indexOf(searchString)!==-1
+		return userData.fullName.toLowerCase().indexOf(searchString)!==-1
 	})
 	return displayList
 }

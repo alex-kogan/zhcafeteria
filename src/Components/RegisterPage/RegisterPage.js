@@ -6,9 +6,9 @@ import ErrorListItem from '../ErrorListItem/ErrorListItem.js'
 const 	RegisterPage = ({signInErrors,
 												onRegisterClick}) => {
   let registerData = {
-    name: '',
     email: '',
-    password: ''
+    password: '',
+    passwordSecond: ''
   }
   return (
     <div id='register'>
