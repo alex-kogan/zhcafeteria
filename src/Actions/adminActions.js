@@ -11,6 +11,7 @@ export const getUserSummary = () => (dispatch, getState) => {
 			dispatch ({type: appConstants.LOAD_ADMIN_USER_LIST, payload: userData});
 			dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: userData});
 		}
+		dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
 	})
 }
 
@@ -24,4 +25,5 @@ const filerUserList = (userDataList,searchString) => {
 export const onSearchChange = (searchString) => (dispatch, getState) => {
 	const displayList = filerUserList(getState().adminData.userDataList,searchString)
 	dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: displayList})
+	dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
 }

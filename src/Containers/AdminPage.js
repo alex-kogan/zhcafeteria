@@ -6,7 +6,8 @@ import {getUserSummary} from '../Actions/adminActions.js'
 
 const mapStateToProps = (state) => {
   return {
-  	userDataList: state.adminData.displayDataList
+  	userDataList: state.adminData.displayDataList,
+  	adminProcessing: state.adminData.adminProcessing
   }
 }
 

@@ -117,12 +117,28 @@ export const checkRemeberMe = () => (dispatch) => {
 export const register = (registerData) => (dispatch, getState) => {
 	const errorArray = verifyRegisterData(registerData)
 	if (errorArray.length===0) {
-		// the input for register is correct, send to server
-
-		// the reply from the server for registering is goood, proceed with process
-		dispatch ({type: appConstants.REGISTER, payload: 'signed_in'});
-		dispatch ({type: appConstants.USER_DATA_UPDATE, payload: registerData});
-		dispatch (routeChange('Home'));
+		// the input for sign in is correct, send to server
+		fetch(appConstants.SERVER_ADDRESS+'register', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				email: registerData.email,
+				password: registerData.password
+			})
+		})
+		.then(response => response.json())
+		.then(userData => {
+			if (userData._id) {
+				dispatch ({type: appConstants.REGISTER, payload: 'signed_in'});
+				dispatch ({type: appConstants.USER_DATA_UPDATE, payload: userData});
+				dispatch (routeChange('Home'));
+			}
+			else {
+				const signInError = []
+				signInError.push(userData)
+				dispatch ({type: appConstants.SIGN_IN_ERROR, payload: signInError});
+			}
+		})
 	}
 	else {
 		dispatch ({type: appConstants.SIGN_IN_ERROR, payload: errorArray});
