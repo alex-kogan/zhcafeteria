@@ -1,9 +1,12 @@
 import {appConstants} from '../Constants.js';
 
 export const getUserSummary = () => (dispatch, getState) => {
-		fetch(appConstants.SERVER_ADDRESS+'adminGetUsers/', {
+		fetch(appConstants.SERVER_ADDRESS+'admin/', {
 		method: 'post',
 		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			aciton: 'getUsers'
+		})
 	})
 	.then(response => response.json())
 	.then(userData => {
