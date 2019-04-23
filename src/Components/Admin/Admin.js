@@ -7,7 +7,6 @@ import AdminTable from './AdminTable'
 import AdminControls from '../../Containers/AdminControls'
 
 const adminBody = (userDataList, adminProcessing) => {
-  console.log(adminProcessing)
   if (adminProcessing)
     return <LoadingOverlay
       active={adminProcessing}

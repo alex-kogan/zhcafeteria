@@ -1,11 +1,11 @@
 import {appConstants} from '../Constants.js';
 
 export const getUserSummary = () => (dispatch, getState) => {
-		fetch(appConstants.SERVER_ADDRESS+'admin/', {
+	fetch(appConstants.SERVER_ADDRESS+'admin', {
 		method: 'post',
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify({
-			aciton: 'getUsers'
+			action: 'getUsers'
 		})
 	})
 	.then(response => response.json())
@@ -29,4 +29,23 @@ export const onSearchChange = (searchString) => (dispatch, getState) => {
 	const displayList = filerUserList(getState().adminData.userDataList,searchString)
 	dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: displayList})
 	dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
+}
+
+export const onResetClick = () => (dispatch, getState) => {
+	dispatch ({type: appConstants.ADMIN_PROCESSING_START})
+	dispatch ({type: appConstants.ADMIN_RESET_CURRENT_VALUES})
+	const usersToReset = getState().adminData.displayList
+	fetch(appConstants.SERVER_ADDRESS+'admin/', {
+		method: 'post',
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			action: 'resetValues',
+			usersToReset: usersToReset
+		})
+	})
+	.then(response => response.json())
+	.then(userData => {
+		dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: userData});
+		dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
+	})
 }
