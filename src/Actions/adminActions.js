@@ -12,7 +12,8 @@ export const getUserSummary = () => (dispatch, getState) => {
 	.then(userData => {
 		if (userData.length!==0) {
 			dispatch ({type: appConstants.LOAD_ADMIN_USER_LIST, payload: userData});
-			dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: userData});
+			const updatePayload = {data: userData, searchString: ''}
+			dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: updatePayload});
 		}
 		dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
 	})
@@ -27,14 +28,15 @@ const filerUserList = (userDataList,searchString) => {
 
 export const onSearchChange = (searchString) => (dispatch, getState) => {
 	const displayList = filerUserList(getState().adminData.userDataList,searchString)
-	dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: displayList})
+	const updatePayload = {data: displayList, searchString: searchString}
+	dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: updatePayload})
 	dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
 }
 
 export const onResetClick = () => (dispatch, getState) => {
 	dispatch ({type: appConstants.ADMIN_PROCESSING_START})
 	dispatch ({type: appConstants.ADMIN_RESET_CURRENT_VALUES})
-	const usersToReset = getState().adminData.displayList
+	const usersToReset = getState().adminData.displayDataList
 	fetch(appConstants.SERVER_ADDRESS+'admin/', {
 		method: 'post',
 		headers: {'Content-Type': 'application/json'},
@@ -45,7 +47,13 @@ export const onResetClick = () => (dispatch, getState) => {
 	})
 	.then(response => response.json())
 	.then(userData => {
-		dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: userData});
-		dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
+		if (userData.length!==0) {
+			dispatch ({type: appConstants.LOAD_ADMIN_USER_LIST, payload: userData});
+			const {userDataList, userSearchString} = getState().adminData
+			const displayList = filerUserList(userDataList, userSearchString)
+			const updatePayload = {data: displayList, searchString: userSearchString}
+			dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: updatePayload})
+			dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
+		}
 	})
 }

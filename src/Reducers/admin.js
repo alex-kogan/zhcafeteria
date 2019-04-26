@@ -2,6 +2,7 @@ import {appConstants} from '../Constants.js'
 
 const initialAdminState = {
 	userDataList: [],
+	userSearchString: '',
 	displayDataList: [],
 	adminProcessing: true
 }
@@ -14,7 +15,8 @@ export const adminData = (state=initialAdminState, action={}) => {
 			});
 		case appConstants.UPDATE_ADMIN_USER_LIST:
 			return Object.assign({}, state, {
-				displayDataList: action.payload,
+				userSearchString: action.payload.searchString,
+				displayDataList: action.payload.data
 			});
 		case appConstants.ADMIN_PROCESSING_START:
 			return Object.assign({}, state, {adminProcessing: true});
