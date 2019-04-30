@@ -8,8 +8,9 @@ import {signInStatus} from './signInStatus.js'
 import {rememberMeStatus} from './rememberMeStatus.js'
 import {userData} from './userData.js'
 import {adminData} from './admin.js'
+import {statsPage} from './stats.js'
 
-const appReducer = combineReducers ({appRoute, priceMenu, signInStatus, userData, rememberMeStatus, adminData});
+const appReducer = combineReducers ({appRoute, priceMenu, signInStatus, userData, rememberMeStatus, adminData, statsPage});
 
 export const rootReducer = (state, action) => {
   if (action.type === appConstants.SIGN_OUT) {

@@ -12,8 +12,21 @@ import 'tachyons';
 import './index.css';
 import App from './Containers/AppRouter.js';
 import {rootReducer} from './Reducers';
+import {setChartSizes} from './Actions/statsActions.js'
+
+
+import {appConstants} from './Constants.js'
 
 let store;
+
+const screenResize = (width) => (dispatch, getState) => {
+		const chartSizes = setChartSizes(width)
+    dispatch ({type: appConstants.SCREEN_RESIZE, payload:chartSizes});
+}
+
+window.addEventListener('resize', () => {
+    store.dispatch(screenResize(window.innerWidth));
+});
 
 if (process.env.REACT_APP_STAGE !== 'production'){
 	const logger = createLogger();

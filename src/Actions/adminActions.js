@@ -12,7 +12,8 @@ export const getUserSummary = () => (dispatch, getState) => {
 	.then(userData => {
 		if (userData.length!==0) {
 			dispatch ({type: appConstants.LOAD_ADMIN_USER_LIST, payload: userData});
-			const updatePayload = {data: userData, searchString: ''}
+			const {userDataList, userSearchString} = getState().adminData
+			const updatePayload = {data: userDataList, searchString: userSearchString}
 			dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: updatePayload});
 		}
 		dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})

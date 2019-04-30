@@ -4,6 +4,7 @@ import App from '../Components/App/App';
 
 import {checkRemeberMe} from '../Actions/signInActions.js'
 import {getUserSummary} from '../Actions/adminActions.js'
+import {getUserStats} from '../Actions/statsActions.js'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +16,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoad: () => dispatch(checkRemeberMe()),
-    onAdminLoad: () => dispatch(getUserSummary())
+    onAdminLoad: () => dispatch(getUserSummary()),
+    onStatsLoad: () => dispatch(getUserStats())
   }
 }
 
