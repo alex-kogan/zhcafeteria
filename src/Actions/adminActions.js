@@ -51,10 +51,22 @@ export const onResetClick = () => (dispatch, getState) => {
 		if (userData.length!==0) {
 			dispatch ({type: appConstants.LOAD_ADMIN_USER_LIST, payload: userData});
 			const {userDataList, userSearchString} = getState().adminData
+			console.log(userDataList, userSearchString)
 			const displayList = filerUserList(userDataList, userSearchString)
 			const updatePayload = {data: displayList, searchString: userSearchString}
 			dispatch ({type: appConstants.UPDATE_ADMIN_USER_LIST, payload: updatePayload})
-			dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
 		}
+	})
+	.then( () => {
+		const userId = getState().userData._id
+		fetch(appConstants.SERVER_ADDRESS+'profile/'+userId, {
+			method: 'get',
+			headers: {'Content-Type': 'application/json'},
+		})
+		.then(response => response.json())
+		.then(userData => {
+			dispatch ({type: appConstants.USER_DATA_UPDATE, payload: userData});
+			dispatch ({type: appConstants.ADMIN_PROCESSING_DONE})
+		})
 	})
 }

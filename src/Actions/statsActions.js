@@ -28,8 +28,8 @@ export const setChartSizes = (screenWidth) => {
 }
 
 const sortByDate = (a,b) => {
-  if(a.transactionDate < b.transactionDate) { return -1; }
-  if(a.transactionDate > b.transactionDate) { return 1; }
+  if(new Date(a.transactionDate+'T'+a.transactionTime) < new Date(b.transactionDate+'T'+b.transactionTime)) { return -1; }
+  if(new Date(a.transactionDate+'T'+a.transactionTime) > new Date(b.transactionDate+'T'+b.transactionTime)) { return 1; }
   return 0;
 }
 
@@ -42,10 +42,10 @@ export const getUserStats = () => (dispatch, getState) => {
 	.then(response => response.json())
 	.then(userStats => {
 		if (userStats.length!==0) {
-			const sortedUserStats = userStats.sort((a,b) => sortByDate(a,b))
+			let  sortedUserStats = userStats.sort((a,b) => sortByDate(a,b))
 			const statsData = {
 				data: sortedUserStats,
-				minStartDate: Date.parse(sortedUserStats[0].transactionDate),
+				minStartDate: Date.parse(new Date(sortedUserStats[0].transactionDate)),
 				maxEndDate: Date.now()
 			}
 			dispatch ({type: appConstants.LOAD_STATS_DATA, payload: statsData});
@@ -59,9 +59,23 @@ export const getUserStats = () => (dispatch, getState) => {
 }
 
 export const onStartDateCahnge = (selectedDate) => (dispatch, getState) => {
+	dispatch ({type: appConstants.STATS_PROCESSING_START})
 	dispatch ({type: appConstants.UPDATE_STATS_START_DATE, payload: selectedDate});
+	const sortedUserStats = getState().statsPage.userData
+	const filteredUserStats=sortedUserStats.filter(function(transaction) {
+  	return new Date(transaction.transactionDate).getTime() > new Date(getState().statsPage.startDate).getTime();
+  })
+	dispatch ({type: appConstants.UPDATE_STATS_DATA, payload: filteredUserStats});
+	dispatch ({type: appConstants.STATS_PROCESSING_DONE})
 }
 
 export const onEndDateCahnge = (selectedDate) => (dispatch, getState) => {
+	dispatch ({type: appConstants.STATS_PROCESSING_START})
 	dispatch ({type: appConstants.UPDATE_STATS_END_DATE, payload: selectedDate});
+	const sortedUserStats = getState().statsPage.userData
+	const filteredUserStats=sortedUserStats.filter(function(transaction) {
+  	return new Date(transaction.transactionDate).getTime() < new Date(getState().statsPage.endDate).getTime();
+  })
+	dispatch ({type: appConstants.UPDATE_STATS_DATA, payload: filteredUserStats});
+	dispatch ({type: appConstants.STATS_PROCESSING_DONE})
 }

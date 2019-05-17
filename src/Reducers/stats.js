@@ -22,9 +22,7 @@ export const statsPage = (state=initialStatsState, action={}) => {
 				maxEndDate: action.payload.maxEndDate
 			})
 		case appConstants.SCREEN_RESIZE:
-			return Object.assign({}, state, {chartSizes:action.payload});
-		case appConstants.CHART_RENDER:
-			return Object.assign({}, state, {chartData:action.payload});			
+			return Object.assign({}, state, {chartSizes:action.payload});	
 		case appConstants.UPDATE_STATS_DATA:
 			return Object.assign({}, state, {userDiaplayData: action.payload});
 		case appConstants.UPDATE_STATS_START_DATE:
